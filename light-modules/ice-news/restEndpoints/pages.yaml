@@ -1,0 +1,23 @@
+workspace: website
+limit: 100
+depth: 10
+nodeTypes:
+  - mgnl:page
+  - mgnl:area
+childNodeTypes:
+  - mgnl:area
+  - mgnl:component
+
+systemProperties:
+  - mgnl:createdBy
+  - mgnl:template
+
+
+# Used to resolve references to Items that are in a different workspace. e.g images, pages nodes and many more.
+references:
+  - name: pageImagesReferences
+    propertyName: image
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240

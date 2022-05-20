@@ -1,0 +1,17 @@
+title: SPA ICE-NEWS NewsList
+# templateScript: /ice-news/templates/pages/NewsList.ftl
+renderType: spa
+baseUrl: http://localhost:3000 
+routeTemplate: '{{@path}}'
+dialog: ice-news:pages/NewsList
+class: info.magnolia.rendering.spa.renderer.SpaRenderableDefinition
+visible: true
+
+areas:
+  main:
+    title: Main Area
+    availableComponents:
+      Header:
+        id: ice-news:components/header
+
+

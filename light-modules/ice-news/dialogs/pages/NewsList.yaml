@@ -1,0 +1,7 @@
+label: NewsList properties
+form:
+  properties:
+    title:
+      $type: textField
+      label: Title
+      i18n: true

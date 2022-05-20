@@ -1,68 +1,93 @@
-import React from 'react';
-import logo from './logo.svg';
-import { EditablePage } from '@magnolia/react-editor';
-import Home from  "./views/Home"
-import './App.css';
-
+import React from "react";
+import logo from "./logo.svg";
+import { EditablePage } from "@magnolia/react-editor";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./views/Home";
+import NewsList from "./views/NewsList";
+import Navbar from "./components/Navbar"
+import "./App.css";
 
 const config = {
   componentMappings: {
-    'ice-news:pages/Home': Home,
+    "ice-news:pages/Home": Home,
+    "ice-news:pages/NewsList": NewsList,  
   },
 };
 
-
 class App extends React.Component {
   state = {};
- 
+
   async componentDidMount() {
-    const isPagesApp = window.location.search.includes('mgnlPreview');
+    const isPagesApp = window.location.search.includes("mgnlPreview");
     console.log(isPagesApp)
+    let currentPath = window.location.pathname;
     let templateAnnotations;
-    const languages = ['en','de']; 
-    const nodeName = 'Ice-news';
-    const pathName = window.location.pathname;
-     
+    const languages = ["en", "de"];
+    const rootNode = "Ice-news";
+    
+    
     // CHECK AND SET THE LANGUAGE THE PAGE WILL USE
-    let currentLanguage = languages[0]
+    // let currentLanguage = languages[0];
     // eslint-disable-next-line array-callback-return
-    languages.some((language)=>{
-         if(new RegExp('/'+ language + '($|/)').test(pathName)){
-           currentLanguage = language;
-           return true;
-         }
-    })
-    
-    
-    let nodePath = nodeName + window.location.pathname.replace(new RegExp('(.*' + nodeName + '|.html)', 'g'), '');
-    nodePath = nodePath.replace(new RegExp('/'+ currentLanguage + '($|/)'),'/');
-    
-    console.log('http://localhost:8080/magnoliaAuthor/.rest/pages/'+ nodePath + '?lang='+ currentLanguage);
-    // const pageRes = await fetch('http://localhost:8080/magnoliaAuthor/.rest/pages/'+ nodePath + '?lang='+ currentLanguage);
-    const pageRes = await fetch('http://localhost:8080/magnoliaAuthor/.rest/pages/Ice-news');
+    // languages.some((language) => {
+      //   if (new RegExp("/" + language + "($|/)").test(currentPath)) {
+        //     currentLanguage = language;
+        //     return true;
+        //   }
+        // });
+        
+        // let nodePath =
+        //   nodeName +
+        //   window.location.pathname.replace(
+          //     new RegExp("(.*" + nodeName + "|.html)", "g"),
+          //     ""
+          //   );
+    console.log(currentPath.includes(rootNode) ? "" : rootNode)
+    const pageRes = await fetch(
+      `http://localhost:8080/magnoliaAuthor/.rest/pages/${currentPath.includes(rootNode) ? "" : rootNode }${currentPath}`
+    );
     const page = await pageRes.json();
-   console.log(page)
+
     if (isPagesApp) {
-      // const templateAnnotationsRes = await fetch(
-      //   'http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1/'+ nodePath
-      // );
-      const templateAnnotationsRes = await fetch(
-        'http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1/Ice-news'
-      );
+      const templateAnnotationsRes = await fetch( `http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`);
       templateAnnotations = await templateAnnotationsRes.json();
-      
-      console.log(templateAnnotations)
+
+      console.log(templateAnnotations);
     }
-    
+
     this.setState({ page, templateAnnotations });
   }
- 
+
   render() {
     const { page, templateAnnotations } = this.state;
- 
+
     return (
-      <div className='App Container'>
-        {page && config && <EditablePage content={page} config={config} templateAnnotations={templateAnnotations} />}
+      <div className="App Container">
+        <Navbar/>
+        {/* <BrowserRouter>
+           <Routes>
+              <Route
+               path="/"
+               element={ <Home/>}
+               >
+
+              </Route>
+              <Route
+               path="/NewsList"
+               element={ <NewsList/>}
+               >
+
+              </Route>
+
+           </Routes>
+        </BrowserRouter> */}
+        {page && config && (
+          <EditablePage
+            content={page}
+            config={config}
+            templateAnnotations={templateAnnotations}
+          />
+        )}
       </div>
     );
   }

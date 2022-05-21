@@ -6,9 +6,8 @@ const HomePage = (props) => {
   console.log(header)
   return (
     <div>
-      <h2> Home Page has been Rendered</h2>
-      <div>{header && <EditableArea content={header}/>}</div>
-      <div>{main && <EditableArea content={main}/>}</div>
+      <div className="headerContainer">{header && <EditableArea className="header-magnolia-editor" content={header}/>}</div>
+      <div className="main-container">{main && <EditableArea className="main-magnolia-editor"  content={main}/>}</div>
     </div>
   );
 };

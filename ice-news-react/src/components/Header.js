@@ -6,8 +6,8 @@ const Header = (props)=>{
     const {title,logo} = props;
     console.log(props);
      return(
-        title && <NavigationContainer>
-         <div className='logo-div'>{logo && <EditableArea content={logo}/>}</div>
+        title && <NavigationContainer className='navigationTitle'>
+         <div className='logo-div'>{logo && <EditableArea  className="logo-headerContainer" content={logo}/>}</div>
         </NavigationContainer>
      )
 }

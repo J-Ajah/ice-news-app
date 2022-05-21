@@ -7,6 +7,7 @@ import NewsList from "./views/NewsList";
 import "./App.css";
 import Header from "./components/Header";
 import LogoImage from "./components/LogoImage";
+import AdvertImage from "./components/AdvertImage";
 
 const config = {
   componentMappings: {
@@ -14,6 +15,7 @@ const config = {
     "ice-news:pages/NewsList": NewsList,
     "ice-news:components/header": Header,
     "ice-news:components/logoImage": LogoImage,
+    "ice-news:components/advertImage": AdvertImage,
   },
 };
 

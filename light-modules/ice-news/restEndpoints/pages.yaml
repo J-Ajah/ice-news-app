@@ -1,6 +1,6 @@
 workspace: website
 limit: 100
-depth: 10
+depth: 40
 nodeTypes:
   - mgnl:page
   - mgnl:area
@@ -21,3 +21,11 @@ references:
       $type: assetReferenceResolver
       assetRenditions:
         - 320x240
+        - 943 x 81
+  - name: pageImagesReferences
+    propertyName: advertImage
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240
+        - 943 x 81

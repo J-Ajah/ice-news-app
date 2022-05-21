@@ -1,0 +1,1 @@
+export const magnoliaHostUrl = "http://localhost:8080"

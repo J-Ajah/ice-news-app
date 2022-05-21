@@ -1,0 +1,16 @@
+workspace: newscontainer
+limit: 100
+depth: 10
+
+
+
+systemProperties:
+  - mgnl:createdBy
+
+references:
+  - name: pageImagesReferences
+    propertyName: ImageLink
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240

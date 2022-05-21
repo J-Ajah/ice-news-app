@@ -1,0 +1,30 @@
+datasource:
+  workspace: newscontainer
+  autoCreate: true
+  namespaces:
+    mt: https://www.magnolia-travel.com/jcr/1.0/mt
+
+model:
+  nodeType: mt:newsContainer
+  properties:
+    Caption:
+      label: Caption
+      required: true
+    Content:
+      type: richText
+      label: Content
+      required: true
+    Author:
+      label: Author
+      required: true
+    PublishedDate:
+      type: Date
+      label: PublishedDate
+      required: true
+    ImageLink:
+      type: asset
+      label: Image
+      multiple: true
+      required: true
+
+  

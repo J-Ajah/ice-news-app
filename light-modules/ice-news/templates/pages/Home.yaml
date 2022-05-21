@@ -1,12 +1,17 @@
 title: SPA ICE-NEWS
 dialog: ice-news:pages/Home
 # templateScript: /spa/webresources/index.html
-baseUrl: http://localhost:3000 
-routeTemplate: '{{@path}}'
+baseUrl: http://localhost:3000
+routeTemplate: "{{@path}}"
 renderType: spa
 class: info.magnolia.rendering.spa.renderer.SpaRenderableDefinition
 
 areas:
+  header:
+    title: Header Area
+    availableComponents:
+      Header:
+        id: ice-news:components/header
   main:
     title: Main Area
     availableComponents:

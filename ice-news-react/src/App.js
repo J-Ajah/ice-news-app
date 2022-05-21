@@ -4,13 +4,16 @@ import { EditablePage } from "@magnolia/react-editor";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import NewsList from "./views/NewsList";
-import Navbar from "./components/Navbar"
 import "./App.css";
+import Header from "./components/Header";
+import LogoImage from "./components/LogoImage";
 
 const config = {
   componentMappings: {
     "ice-news:pages/Home": Home,
-    "ice-news:pages/NewsList": NewsList,  
+    "ice-news:pages/NewsList": NewsList,
+    "ice-news:components/header": Header,
+    "ice-news:components/logoImage": LogoImage,
   },
 };
 
@@ -63,7 +66,7 @@ class App extends React.Component {
 
     return (
       <div className="App Container">
-        <Navbar/>
+        <Header/>
         {/* <BrowserRouter>
            <Routes>
               <Route

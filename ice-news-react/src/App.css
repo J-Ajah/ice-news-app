@@ -5,7 +5,11 @@ body{
 }
 
 .App {
-  text-align: center;
+  /* text-align: center; */
+  width:85%;
+  height: 100vh;
+  border: solid 1px tomato;
+  margin: 0 auto;
 }
 
 .App-logo {

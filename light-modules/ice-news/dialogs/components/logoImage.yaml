@@ -1,0 +1,9 @@
+# Automatically generated dialog with few most often used fields (text, right, link, DAM image, multivalue, link to app, select). Feel free to modify them for your specific component.
+
+label: logoImage
+form:
+  properties:
+    image:
+      label: Image
+      $type: damLinkField
+   

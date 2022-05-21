@@ -1,2 +1,11 @@
 title: header
 dialog: ice-news:components/header
+areas:
+  logo:
+    title: Logo Area
+    availableComponents:
+      logoImage:
+        id: ice-news:components/logoImage
+      advertImage:
+        id: ice-news:components/advertImage
+      

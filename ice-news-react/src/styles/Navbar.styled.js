@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 
-export const NavigationContainer = styled.div`
-  width: 100%;
+export const NavigationLogoContainer = styled.div`
+  width: 85%;
+  margin: 0 auto;
 //   background-color: #D30B0B;
 
 .logo-headerContainer{
@@ -10,7 +11,7 @@ export const NavigationContainer = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    margin-top:30px;
+    margin-top:20px;
 }
 
 div.mgnlEditorBar.area.start{
@@ -23,10 +24,11 @@ div.mgnlEditorBar.area ~ div.mgnlPlaceholder, div.mgnlEditorBar.area ~ * div.mgn
 
 .advertContainer{
     width: 55%;
-
     img{
-        height:70px;
+        height:81px;
         text-align: center;
     }
 }
+
+
 `

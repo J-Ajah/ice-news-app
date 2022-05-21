@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { EditableArea } from "@magnolia/react-editor";
 
 const NewsList = (props) => {
   const { main } = props;
+  
   // console.log(main)
   return (
     <div>

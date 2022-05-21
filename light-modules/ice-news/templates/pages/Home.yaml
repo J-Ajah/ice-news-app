@@ -12,6 +12,9 @@ areas:
     availableComponents:
       Header:
         id: ice-news:components/header
+      navLinkContainer:
+        id: ice-news:components/mainNavContainer
+
   main:
     title: Main Area
     availableComponents:

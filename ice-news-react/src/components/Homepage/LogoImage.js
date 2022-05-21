@@ -1,5 +1,5 @@
 import React from "react"
-import { magnoliaHostUrl } from "../public/config";
+import { magnoliaHostUrl } from "../../public/config";
 
 
 const LogoImage = (props)=>{

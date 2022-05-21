@@ -1,0 +1,31 @@
+# Automatically generated dialog with few most often used fields (text, right, link, DAM image, multivalue, link to app, select). Feel free to modify them for your specific component.
+
+label: mainNavContainer
+form:
+  properties:
+    navigation1:
+      $type: textField
+      label: Navigation1 Title
+      i18n: true
+      required: true
+    navigation2:
+      $type: textField
+      label: Navigation2 Title
+      i18n: true
+      required: true
+    navigation3:
+      $type: textField
+      label: Navigation3 Title
+      i18n: true
+      required: true
+    navigation4:
+      $type: textField
+      label: Navigation4 Title
+      i18n: true
+      required: true
+    navigation5:
+      $type: textField
+      label: Navigation5 Title
+      i18n: true
+      required: true
+

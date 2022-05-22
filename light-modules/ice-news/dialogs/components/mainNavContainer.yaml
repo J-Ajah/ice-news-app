@@ -28,4 +28,53 @@ form:
       label: Navigation5 Title
       i18n: true
       required: true
+    fbIcon:
+      label: Facebook Icon
+      $type: damLinkField
+      multiple: true
+      required: true
+    fbIconUrl:
+      label: Url
+      $type: textField
+      required: true
+    messengerIcon:
+      label: Messenger Icon
+      $type: damLinkField
+      multiple: true
+      required: true
+    messengerIconUrl:
+      label: Url
+      $type: textField
+      required: true
+    linkedInIcon:
+      label: LinkedIn Icon
+      $type: damLinkField
+      multiple: true
+      required: true
+    linkedInIconUrl:
+      label: Url
+      $type: textField
+      required: true
+
+  layout:
+    $type: tabbedLayout
+    tabs:
+      tab1:
+        label: Navigation Details
+        fields:
+          - name: navigation1
+          - name: navigation2
+          - name: navigation3
+          - name: navigation4
+          - name: navigation5
+      tab2:
+        label: Social Icons
+        fields:
+          - name: fbIcon
+          - name: fbIconUrl
+          - name: messengerIcon
+          - name: messengerIconUrl
+          - name: linkedInIcon
+          - name: linkedInIconUrl
+
 

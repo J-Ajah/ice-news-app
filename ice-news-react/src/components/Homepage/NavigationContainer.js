@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import InputAdornment from '@mui/material/InputAdornment';
+import { InputBase } from "@mui/material";
+// import makeStyles from "@mui/material"
+
+
+// const useStyles = makeStyles(() => ({
+//     noBorder: {
+//       border: "none",
+//     },
+//   }));
 
 const NavigationContainer = (props) => {
   const navigate = useNavigate();
@@ -7,23 +18,26 @@ const NavigationContainer = (props) => {
   const { navigation1, navigation2, navigation3, navigation4, navigation5 } =
     props;
 
-  const [isRouteChanged, setIsRouteChanged] = useState(false);
+//   const styles = useStyles();
 
   return (
     <div className="mainNavContainer">
       <ul>
         <li>
-          <Link
-            to={"/"}
-            onClick={() => window.location.replace("/")}
-          >
+          <Link to={"/"} onClick={() => {
+               Navigate("/NewsListPage");
+              }}>
             {navigation1}
           </Link>
         </li>
         <li>
           <Link
             to={"/NewsListPage"}
-            onClick={() => window.location.replace("/NewsListPage")}
+            onClick={
+                ()=>{
+                   Navigate("/NewsListPage")
+                }
+            }
           >
             {navigation2}
           </Link>
@@ -31,7 +45,7 @@ const NavigationContainer = (props) => {
         <li>
           <Link
             to={"/NewsListPage"}
-            onClick={() => window.location.replace("/NewsListPage")}
+            onClick={() =>  Navigate("/NewsListPage")}
           >
             {navigation3}
           </Link>
@@ -39,7 +53,7 @@ const NavigationContainer = (props) => {
         <li>
           <Link
             to={"/NewsListPage"}
-            onClick={() => window.location.replace("/NewsListPage")}
+            onClick={() =>  Navigate("/NewsListPage")}
           >
             {navigation4}
           </Link>
@@ -53,6 +67,13 @@ const NavigationContainer = (props) => {
           </Link>
         </li>
       </ul>
+      <div className="searchContainer">
+        <InputBase placeholder="Search" endAdornment={
+            <InputAdornment position="end">
+              $
+            </InputAdornment>
+          }/>
+      </div>
     </div>
   );
 };

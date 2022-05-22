@@ -1,16 +1,19 @@
 import React from "react";
 import { EditablePage } from "@magnolia/react-editor";
-import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import "./App.css";
 import { config } from "./config";
 import { GlobalContainer } from "./styles/Global";
+
+
+
 
 class App extends React.Component {
   state = {};
 
   async componentDidMount() {
     const isPagesApp = window.location.search.includes("mgnlPreview");
-    console.log(isPagesApp);
+    console.log(window.location);
     let currentPath = window.location.pathname;
     let templateAnnotations;
     const languages = ["en", "de"];
@@ -46,85 +49,52 @@ class App extends React.Component {
       );
       templateAnnotations = await templateAnnotationsRes.json();
 
-      console.log(templateAnnotations);
+   
     }
 
     this.setState({ page, templateAnnotations });
   }
 
-  render() {
+  renderComponent() {
     const { page, templateAnnotations } = this.state;
+    return (
+      <GlobalContainer>
+        <EditablePage
+          content={page}
+          config={config}
+          templateAnnotations={templateAnnotations}
+        />
+      </GlobalContainer>
+    );
+  }
 
+  render() {
     return (
       <div className="App Container">
-          <BrowserRouter>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  page &&
-                  config && (
-                    <GlobalContainer>
-                      <EditablePage
-                        content={page}
-                        config={config}
-                        templateAnnotations={templateAnnotations}
-                      />
-                    </GlobalContainer>
-                  )
-                }
-              ></Route>
-              <Route
-                exact
-                path={"/Ice-news"}
-                element={
-                  page &&
-                  config && (
-                    <GlobalContainer>
-                      <EditablePage
-                        content={page}
-                        config={config}
-                        templateAnnotations={templateAnnotations}
-                      />
-                    </GlobalContainer>
-                  )
-                }
-              ></Route>
-              <Route
-                exact
-                path={"/Ice-news"}
-                element={
-                  page &&
-                  config && (
-                    <GlobalContainer>
-                      <EditablePage
-                        content={page}
-                        config={config}
-                        templateAnnotations={templateAnnotations}
-                      />
-                    </GlobalContainer>
-                  )
-                }
-              ></Route>
-              <Route
-                exact
-                path={"/NewsListPage"}
-                element={
-                  page &&
-                  config && (
-                    <GlobalContainer>
-                      <EditablePage
-                        content={page}
-                        config={config}
-                        templateAnnotations={templateAnnotations}
-                      />
-                    </GlobalContainer>
-                  )
-                }
-              ></Route>
-            </Routes>
-          </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
+              exact
+              path={"/Ice-news"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
+              exact
+              path={"/Ice-news"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
+              exact
+              path={"/NewsListPage"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     );
   }

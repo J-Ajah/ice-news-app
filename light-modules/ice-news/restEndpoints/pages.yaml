@@ -29,3 +29,24 @@ references:
       assetRenditions:
         - 320x240
         - 943 x 81
+  - name: pageImagesReferences
+    propertyName: fbIcon
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240
+        - 943 x 81
+  - name: pageImagesReferences
+    propertyName: messengerIcon
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240
+        - 943 x 81
+  - name: pageImagesReferences
+    propertyName: linkedInIcon
+    referenceResolver:
+      $type: assetReferenceResolver
+      assetRenditions:
+        - 320x240
+        - 943 x 81

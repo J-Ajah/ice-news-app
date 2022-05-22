@@ -32,6 +32,28 @@ export const GlobalContainer = styled.div`
         padding-left:8px;
         padding-right: 5px;
 
+        input::placeholder{
+            color: #000;
+            opacity: 0.7;
+        }
+        img{
+            cursor:pointer;
+        }
+
+    }
+
+    .social-Icons{
+        text-align: center;
+        height: 83px;
+        margin: auto 0px auto 50px;
+
+
+        img{
+            margin: 20px;
+            width:39px;
+            height:40px;
+            cursor: pointer;
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 workspace: website
 limit: 100
-depth: 40
+depth: 60
 nodeTypes:
   - mgnl:page
   - mgnl:area

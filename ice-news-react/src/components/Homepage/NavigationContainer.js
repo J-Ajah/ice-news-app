@@ -3,19 +3,15 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
 import { InputBase } from "@mui/material";
-// import makeStyles from "@mui/material"
+import { magnoliaHostUrl } from "../../public/config";
+import searchIcon from "../../assets/Vector.svg"
 
-
-// const useStyles = makeStyles(() => ({
-//     noBorder: {
-//       border: "none",
-//     },
-//   }));
 
 const NavigationContainer = (props) => {
   const navigate = useNavigate();
   console.log("Navigation container props has been logged: ", props);
-  const { navigation1, navigation2, navigation3, navigation4, navigation5 } =
+  const { navigation1, navigation2, navigation3, navigation4, navigation5,
+ fbIcon, linkedInIcon, messengerIcon, } =
     props;
 
 //   const styles = useStyles();
@@ -68,11 +64,16 @@ const NavigationContainer = (props) => {
         </li>
       </ul>
       <div className="searchContainer">
-        <InputBase placeholder="Search" endAdornment={
+        <InputBase placeholder="Search News" endAdornment={
             <InputAdornment position="end">
-              $
+             <img  src={searchIcon} alt="searchIcon"/>
             </InputAdornment>
           }/>
+      </div>
+      <div className="social-Icons">
+            <img  src={`${magnoliaHostUrl}${fbIcon['@link']}`} alt="Facebook"/>
+            <img  src={`${magnoliaHostUrl}${messengerIcon['@link']}`} alt="Messenger"/>
+            <img  src={`${magnoliaHostUrl}${linkedInIcon['@link']}`} alt="LinkedIn"/>
       </div>
     </div>
   );

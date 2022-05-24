@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
 import { InputBase } from "@mui/material";
-import { magnoliaHostUrl } from "../../public/config";
-import searchIcon from "../../assets/Vector.svg"
+import { magnoliaHostUrl } from "../public/config";
+import searchIcon from "../assets/Vector.svg"
 
 
 const NavigationContainer = (props) => {
-  const navigate = useNavigate();
+
   console.log("Navigation container props has been logged: ", props);
   const { navigation1, navigation2, navigation3, navigation4, navigation5,
  fbIcon, linkedInIcon, messengerIcon, } =
@@ -18,6 +18,7 @@ const NavigationContainer = (props) => {
 
   return (
     <div className="mainNavContainer">
+      <div className="mini-container">
       <ul>
         <li>
           <Link to={"/"} onClick={() => {
@@ -75,6 +76,8 @@ const NavigationContainer = (props) => {
             <img  src={`${magnoliaHostUrl}${messengerIcon['@link']}`} alt="Messenger"/>
             <img  src={`${magnoliaHostUrl}${linkedInIcon['@link']}`} alt="LinkedIn"/>
       </div>
+      </div>
+     
     </div>
   );
 };

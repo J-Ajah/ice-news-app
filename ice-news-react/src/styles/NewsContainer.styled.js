@@ -12,7 +12,6 @@ export const NewsContainer = styled.div`
 
     .news-container-item {
       width: 40%;
-      border: solid 1px green;
       box-sizing: border-box;
     }
 
@@ -23,7 +22,8 @@ export const NewsContainer = styled.div`
 
       .carousel {
         .carousel-Item {
-          img {
+            img {
+              border-radius: 5px;
             width: 100%;
           }
 
@@ -62,6 +62,42 @@ export const NewsContainer = styled.div`
             padding: 0;
             margin: 0;
             text-align: right;
+            font-size: 20px;
+            opacity: 0.7;
+        }
+
+        .feature-News{
+            position: relative;
+             width: 100%;
+             margin: 10px;
+             border-radius: 10px;            
+             img{
+                 border-radius: 10px;            
+                 width: 100%;
+                 box-sizing: border-box;
+             }
+
+             .feature-news-authors{
+                  position: absolute;
+                  bottom : 0;
+                  color: white;
+
+                  .feature-title{
+                      position: relative;
+                      font-size: 17px;
+                      color: white;
+                  }
+                  p{
+                      margin: 5px 15px;
+                      font-size: 0.8rem;
+                      text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+                  }
+
+                  p: last-child{
+                      position: relative;
+                      bottom: 5px;
+                  }
+             }
         }
     }
   }

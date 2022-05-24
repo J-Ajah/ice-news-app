@@ -25,7 +25,7 @@ div.mgnlEditorBar.area ~ div.mgnlPlaceholder, div.mgnlEditorBar.area ~ * div.mgn
 .advertContainer{
     width: 55%;
     img{
-        height:81px;
+        height:75px;
         text-align: center;
     }
 }

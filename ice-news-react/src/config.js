@@ -6,6 +6,7 @@ import LogoImage from "./components/Homepage/LogoImage";
 import AdvertImage from "./components/Homepage/AdvertImage";
 import NavigationContainer from "./components/NavigationContainer";
 import NewsContainerDiv from "./components/Homepage/NewsContainer";
+import Category from "./components/Homepage/CategoryChecker";
 
 export const config = {
   componentMappings: {

@@ -18,5 +18,9 @@ areas:
   main:
     title: Main Area
     availableComponents:
-      Header:
-        id: ice-news:components/header
+      section:
+        id: ice-news:components/newsSectionContainer
+      newsCategoryListing:
+        id: ice-news:components/newsCatListingContainer
+
+      

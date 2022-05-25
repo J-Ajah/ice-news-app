@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NewsContainer = styled.div`
   width: 85%;
   margin: 30px auto 0px auto;
-  height: 500px;
+
 
   .news-container-mini {
     display: flex;
@@ -19,11 +19,10 @@ export const NewsContainer = styled.div`
       width: 100%;
       height: 100%;
       margin: 0 50px 0px 0px;
-
+      position: relative;
       .carousel {
         .carousel-Item {
             img {
-              border-radius: 5px;
             width: 100%;
           }
 
@@ -54,6 +53,12 @@ export const NewsContainer = styled.div`
           }
         }
       }
+
+      .Checkbox-container{
+          position: relative;
+          width: 100%;
+          bottom: 190px;
+      }
     }
 
 
@@ -69,8 +74,7 @@ export const NewsContainer = styled.div`
         .feature-News{
             position: relative;
              width: 100%;
-             margin: 10px;
-             border-radius: 10px;            
+             margin: 10px;         
              img{
                  border-radius: 10px;            
                  width: 100%;
@@ -84,7 +88,7 @@ export const NewsContainer = styled.div`
 
                   .feature-title{
                       position: relative;
-                      font-size: 17px;
+                      font-size: 20px;
                       color: white;
                   }
                   p{
@@ -102,3 +106,53 @@ export const NewsContainer = styled.div`
     }
   }
 `;
+
+
+export const NewsCatListingContainer = styled.div`
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   position: relative;
+   flex-wrap: wrap;
+   width: 85%;
+   margin: 0 auto;
+   border-radius: 10px;
+   bottom: 150px;
+   background-color: #F9F9F9;
+   padding: 10px;
+
+   .news{
+       width: 80%;
+       margin: 40px;
+       border-radius: 10px;
+       background-color: white;
+       box-sizing: border-box;
+       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+       img{
+           width: 100%;
+           border-radius: 10px 10px 0px 0px;
+       }
+
+       .new-captions-author{
+           padding: 10px 15px;
+           height: 110px;
+            h4{
+                margin: 0;
+            }
+
+            .author{
+                margin: 20px 0px 0px 0px;
+            }
+       }
+   }
+
+   .see-more{
+       grid-column: 1/-1;
+       text-align: right;
+       cursor: pointer;
+       padding-right: 40px;
+   }
+
+
+
+`

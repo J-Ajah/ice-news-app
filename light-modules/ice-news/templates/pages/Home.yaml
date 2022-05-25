@@ -23,4 +23,8 @@ areas:
       newsCategoryListing:
         id: ice-news:components/newsCatListingContainer
 
-      
+  footer:
+    title: Footer Area
+    availableComponents:
+      footer:
+        id: ice-news:components/footer

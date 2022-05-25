@@ -2,6 +2,7 @@ import React from "react";
 import { NewsContainer } from "../../styles/NewsContainer.styled";
 import Carousel from "./Carousel";
 import FeatureNews from "./FeatureNews";
+import Checkbox from "./Checkbox"
 
 const NewsContainerDiv = () => {
   return (
@@ -9,6 +10,7 @@ const NewsContainerDiv = () => {
       <div className="news-container-mini">
         <div className="news-container-item">
           <Carousel />
+          <Checkbox/>
         </div>
         <div className="news-container-item">
           <h4>Features</h4>

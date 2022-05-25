@@ -1,0 +1,8 @@
+title: footer
+
+areas:
+  section:
+    title: Section Area
+    availableComponents:
+      footerSection:
+        id: ice-news:components/footerSection

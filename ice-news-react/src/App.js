@@ -46,9 +46,10 @@ class App extends React.Component {
     if (isPagesApp) {
       const templateAnnotationsRes = await fetch(
         `http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`
-      );
-      templateAnnotations = await templateAnnotationsRes.json();
-
+        );
+        templateAnnotations = await templateAnnotationsRes.json();
+        console.log(`http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`);
+     
    
     }
 

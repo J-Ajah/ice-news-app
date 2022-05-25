@@ -2,12 +2,11 @@ import React from "react"
 import { magnoliaHostUrl } from "../../public/config";
 
 
-const LogoImage = (props)=>{
-    const {image} = props;
-    console.log("Logo Image props has been logged: ",props)
+const LogoImage = ({image})=>{
+    const ImagePath = `${magnoliaHostUrl}${image?.['@link']}`;
     return(
         <div>
-            <img  src={`${magnoliaHostUrl}${image['@link']}`} alt="logoImage"/>
+            <img  src={ImagePath} alt="logoImage"/>
         </div>
     )
 }

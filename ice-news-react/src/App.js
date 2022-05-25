@@ -1,6 +1,6 @@
 import React from "react";
 import { EditablePage } from "@magnolia/react-editor";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import "./App.css";
 import { config } from "./config";
 import { GlobalContainer } from "./styles/Global";
@@ -16,7 +16,7 @@ class App extends React.Component {
     console.log(window.location);
     let currentPath = window.location.pathname;
     let templateAnnotations;
-    const languages = ["en", "de"];
+    // const languages = ["en", "de"];
     const rootNode = "Ice-news";
 
     // CHECK AND SET THE LANGUAGE THE PAGE WILL USE

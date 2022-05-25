@@ -74,11 +74,12 @@ export const NewsContainer = styled.div`
         .feature-News{
             position: relative;
              width: 100%;
-             margin: 10px;         
+             margin: 10px;    
              img{
                  border-radius: 10px;            
                  width: 100%;
                  box-sizing: border-box;
+                 background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(17,17,16,0.5217437316723564) 100%);     
              }
 
              .feature-news-authors{
@@ -93,7 +94,7 @@ export const NewsContainer = styled.div`
                   }
                   p{
                       margin: 5px 15px;
-                      font-size: 0.8rem;
+                      font-size: 14px;
                       text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
                   }
 
@@ -112,7 +113,6 @@ export const NewsCatListingContainer = styled.div`
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    position: relative;
-   flex-wrap: wrap;
    width: 85%;
    margin: 0 auto;
    border-radius: 10px;
@@ -127,7 +127,7 @@ export const NewsCatListingContainer = styled.div`
        background-color: white;
        box-sizing: border-box;
        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
+       cursor: pointer;
        img{
            width: 100%;
            border-radius: 10px 10px 0px 0px;
@@ -138,6 +138,7 @@ export const NewsCatListingContainer = styled.div`
            height: 110px;
             h4{
                 margin: 0;
+                color: #3c3c3c;
             }
 
             .author{

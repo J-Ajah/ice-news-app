@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import { useEffect, useRef, useState } from "react";
 
 const images = [
   {
@@ -34,30 +30,30 @@ const images = [
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
-  let count = 0;
+  let count = useRef(0);
 
   useEffect(() => {
     setInterval(() => {
       let imagesLength = parseInt(images.length) - 1;
 
-      if (count === imagesLength - 1) {
+      if (count.current === imagesLength - 1) {
         setCarouselIndex((prev) => {
-          count = 0;
+          count.current = 0;
           return 0;
         });
       } else {
         setCarouselIndex((prev) => {
-          count = prev;
+          count.current = prev;
           return prev + 1;
         });
       }
-    }, 50000);
+    }, 5000);
   }, []);
 
   return (
     <div className="carousel">
       <div className="carousel-Item">
-        <img src={`${images[carouselIndex].imgPath}`} />
+        <img src={`${images[carouselIndex].imgPath}`} alt="main news" />
         <div className="news-header-container">
           <div className="news-Category">
             <p>Business</p>

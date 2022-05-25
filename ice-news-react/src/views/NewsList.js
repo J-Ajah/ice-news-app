@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { EditableArea } from "@magnolia/react-editor";
 
 const NewsList = (props) => {

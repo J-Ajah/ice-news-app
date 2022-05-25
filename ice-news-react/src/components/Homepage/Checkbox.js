@@ -3,7 +3,6 @@ import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-const label = { inputProps: { "aria-label": "News Category" } };
 
 export default function NewsCategoryCheckbox() {
   const checkboxStyle = {

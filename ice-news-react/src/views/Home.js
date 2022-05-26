@@ -8,7 +8,7 @@ const HomePage = (props) => {
     <div>
       <div className="headerContainer">{header && <EditableArea className="header-magnolia-editor" content={header}/>}</div>
       <div className="main-container">{main && <EditableArea className="main-magnolia-editor"  content={main}/>}</div>
-      <div className="footer-container">{footer && <EditableArea className="main-magnolia-editor"  content={footer}/>}</div>
+      <div className="footer-container">{footer && <EditableArea className="main-magnolia-editor"  content={footer} headerProps={header}/>}</div>
     </div>
   );
 };

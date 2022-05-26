@@ -5,6 +5,14 @@ import FeatureNews from "./FeatureNews";
 import Checkbox from "./Checkbox"
 
 const NewsContainerDiv = () => {
+
+    const newsFeature = [
+        {
+            author: "John Stones",
+            newsTitle: "Our pick of the best new tech 2022",
+            releaseDate: "25-05-2023"
+        }
+    ]
   return (
     <NewsContainer className="news-container">
       <div className="news-container-mini">

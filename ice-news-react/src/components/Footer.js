@@ -2,11 +2,12 @@ import React from "react";
 import { EditableArea } from "@magnolia/react-editor";
 import { Footer as FooterArea } from "./../styles/Footer";
 
-const Footer = ({ section }) => {
+const Footer = (props) => {
+    console.log(props)
   return (
     <FooterArea>
-      {section && (
-        <EditableArea className="main-magnolia-editor" content={section} />
+      {props.section && (
+        <EditableArea className="main-magnolia-editor" content={props.section} />
       )}
     </FooterArea>
   );

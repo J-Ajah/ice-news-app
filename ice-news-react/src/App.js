@@ -1,17 +1,18 @@
 import React from "react";
 import { EditablePage } from "@magnolia/react-editor";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { config } from "./config";
 import { GlobalContainer } from "./styles/Global";
-
-
-
+import NewsDetailPage from "./components/NewsDetails";
 
 class App extends React.Component {
+  _isMounted = false;
+
   state = {};
 
   async componentDidMount() {
+    this._isMounted = true;
     const isPagesApp = window.location.search.includes("mgnlPreview");
     console.log(window.location);
     let currentPath = window.location.pathname;
@@ -46,14 +47,18 @@ class App extends React.Component {
     if (isPagesApp) {
       const templateAnnotationsRes = await fetch(
         `http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`
-        );
-        templateAnnotations = await templateAnnotationsRes.json();
-        console.log(`http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`);
-     
-   
+      );
+      templateAnnotations = await templateAnnotationsRes.json();
+      console.log(
+        `http://localhost:8080/magnoliaAuthor/.rest/template-annotations/v1${currentPath}`
+      );
     }
 
     this.setState({ page, templateAnnotations });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   renderComponent() {
@@ -75,23 +80,20 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route
+              path={"/Ice-news"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
+              path={`/Ice-news:id`}
+              element={<NewsDetailPage />}
+            ></Route>
+            <Route
+              path={"/NewsListPage"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
               exact
               path="/"
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            <Route
-              exact
-              path={"/Ice-news"}
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            <Route
-              exact
-              path={"/Ice-news"}
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            <Route
-              exact
-              path={"/NewsListPage"}
               element={this.state.page && config && this.renderComponent()}
             ></Route>
           </Routes>

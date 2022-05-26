@@ -31,23 +31,30 @@ const images = [
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   let count = useRef(0);
+  const isMounted = useIsMounted(false);
+
 
   useEffect(() => {
-    setInterval(() => {
-      let imagesLength = parseInt(images.length) - 1;
+    setInterval(() => { 
 
-      if (count.current === imagesLength - 1) {
-        setCarouselIndex((prev) => {
-          count.current = 0;
-          return 0;
-        });
-      } else {
-        setCarouselIndex((prev) => {
-          count.current = prev;
-          return prev + 1;
-        });
-      }
+        if(isMounted.current){
+            let imagesLength = parseInt(images.length) - 1;
+      
+            if (count.current === imagesLength - 1) {
+              setCarouselIndex((prev) => {
+                count.current = 0;
+                return 0;
+              });
+            } else {
+              setCarouselIndex((prev) => {
+                count.current = prev;
+                return prev + 1;
+              });
+            }
+        }
     }, 5000);
+    
+
   }, []);
 
   return (
@@ -68,5 +75,17 @@ const Carousel = () => {
     </div>
   );
 };
+
+const useIsMounted = ()=>{
+    const isMounted = useRef(false);
+
+    useEffect(()=>{
+        isMounted.current = true;
+        return ()=> isMounted.current = false;
+    })
+
+    return isMounted
+}
+
 
 export default Carousel;

@@ -77,7 +77,7 @@ const News = ({ author, newsDate, newsTitle, id }) => {
     <div
       className="news"
       onClick={() => {
-          navigate(`Ice-news/${id}`, { state: { author, newsDate, newsTitle } });
+          navigate(`${id}`, { state: { author, newsDate, newsTitle } });
       }}
     >
       <img src={BusinessImage} alt=" news" />

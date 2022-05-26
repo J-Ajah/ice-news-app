@@ -84,7 +84,7 @@ class App extends React.Component {
               element={this.state.page && config && this.renderComponent()}
             ></Route>
             <Route
-              path={`/Ice-news:id`}
+              path={"/:id"}
               element={<NewsDetailPage />}
             ></Route>
             <Route

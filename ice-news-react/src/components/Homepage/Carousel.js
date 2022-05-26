@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import BusinessImage from ".././../assets/Business.jpg";
 
 const images = [
   {
     label: "San Jose – Oakland Bay Bridge, United States",
     imgPath:
-      "http://localhost:3000/static/media/Carousel%203.2c287dffe5d9ac5ec755.jpg",
+    BusinessImage,
   },
   {
     label: "San Francisco – Oakland Bay Bridge, United States",

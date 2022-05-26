@@ -3,6 +3,7 @@ import { EditableArea } from "@magnolia/react-editor";
 
 const HomePage = (props) => {
   const { main,header,footer } = props;
+  console.log(main)
   return (
     <div>
       <div className="headerContainer">{header && <EditableArea className="header-magnolia-editor" content={header}/>}</div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate} from "react-router-dom";
 import { NewsCatListingContainer } from "../../styles/NewsContainer.styled";
 import BusinessImage from "./../../assets/Business.jpg";
 

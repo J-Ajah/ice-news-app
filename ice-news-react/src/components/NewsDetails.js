@@ -5,6 +5,9 @@ import { GlobalContainer } from "./../styles/Global";
 import { useLocation } from "react-router-dom";
 import NewsDetails from "../styles/NewsDetails";
 import { magnoliaHostUrl } from "../public/config";
+import FeaturesNews from "./Homepage/FeatureNews";
+import Parser from "html-react-parser"
+import AdImage from "../assets/DetailsAdvert.jpg";
 
 const NewsDetailPage = (props) => {
   const [navBarComponent, setNavbarNavigationBar] = useState([]);
@@ -39,9 +42,15 @@ const NewsDetailPage = (props) => {
             "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
           );
           const response = await currentNews.json();
-          const newsInfo ={
-              img: response.results["0"]?.ImageLink[0]["@link"]
-          }
+          console.log(response);
+          const newsInfo = {
+            img: response.results["0"]?.ImageLink[0]["@link"],
+            author:  response.results["0"]?.Author,
+            caption: response.results["0"]?.Caption,
+            content: response.results["0"]?.Content,
+            publishedDate: response.results["0"]?.PublishedDate,
+            category: response.results["0"]["@path"]
+          };
           setNews(newsInfo);
         })();
 
@@ -49,7 +58,7 @@ const NewsDetailPage = (props) => {
       })();
     }
   }, [navBarComponent]);
-console.log(news.img)
+
   return (
     <GlobalContainer>
       {loading ? (
@@ -72,10 +81,53 @@ console.log(news.img)
           {loading ? (
             <ClipLoader size={50} color="#1B98E0" />
           ) : (
-            <img className="news-image" src={`${magnoliaHostUrl}`+news.img} alt="NewsImage" />
+            <img
+              className="news-image"
+              src={`${magnoliaHostUrl}` + news.img}
+              alt="NewsImage"
+            />
           )}
+
+          <div className="news-text-container">
+                <h3>{news.caption}</h3>
+                <p style={{fontWeight:"bold"}}><span>Author:</span> {news.author}</p>
+                <p class="news-text">
+                    {Parser(""+news?.content)}
+                </p>
+          </div>
+
+
         </div>
-        <div className="details-info"></div>
+        <div className="details-info">
+          <div className="authors-other-news">
+            <h3>Other news from Author</h3>
+          </div>
+          <div className="other-news">
+          <FeaturesNews>
+            <div className="feature-news-authors">
+            <p className="feature-title"> Our pick of the best new tech 2022 </p>
+              <p>By John Stones</p>
+              <p>25-05-2023</p>
+            </div>
+          </FeaturesNews>
+          <FeaturesNews>
+            <div className="feature-news-authors">
+            <p className="feature-title"> Our pick of the best new tech 2022 </p>
+              <p>By John Stones</p>
+              <p>25-05-2023</p>
+            </div>
+          </FeaturesNews>
+          <FeaturesNews>
+            <div className="feature-news-authors">
+            <p className="feature-title"> Our pick of the best new tech 2022 </p>
+              <p>By John Stones</p>
+              <p>25-05-2023</p>
+            </div>
+          </FeaturesNews>
+          </div>
+          {/* Advert Image starts here */}
+          <img className="adImage" src={AdImage}  alt="advertImage"/>
+        </div>
       </NewsDetails>
     </GlobalContainer>
   );

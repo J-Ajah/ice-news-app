@@ -80,20 +80,21 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route
-              path={"/Ice-news"}
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            <Route
-              path={"/:id"}
-              element={<NewsDetailPage />}
-            ></Route>
-            <Route
               path={"/NewsListPage"}
               element={this.state.page && config && this.renderComponent()}
             ></Route>
             <Route
               exact
               path="/"
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route path={"/:id"} element={<NewsDetailPage />}></Route>
+            <Route
+              path={"/Ice-news"}
+              element={this.state.page && config && this.renderComponent()}
+            ></Route>
+            <Route
+              path={"/Ice-news/:id"}
               element={this.state.page && config && this.renderComponent()}
             ></Route>
           </Routes>

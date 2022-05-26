@@ -6,8 +6,10 @@ import { useLocation } from "react-router-dom";
 import NewsDetails from "../styles/NewsDetails";
 import { magnoliaHostUrl } from "../public/config";
 import FeaturesNews from "./Homepage/FeatureNews";
-import Parser from "html-react-parser"
+import Parser from "html-react-parser";
 import AdImage from "../assets/DetailsAdvert.jpg";
+import { Footer } from "./../styles/Footer";
+import FooterSection from "./FooterSection";
 
 const NewsDetailPage = (props) => {
   const [navBarComponent, setNavbarNavigationBar] = useState([]);
@@ -45,11 +47,11 @@ const NewsDetailPage = (props) => {
           console.log(response);
           const newsInfo = {
             img: response.results["0"]?.ImageLink[0]["@link"],
-            author:  response.results["0"]?.Author,
+            author: response.results["0"]?.Author,
             caption: response.results["0"]?.Caption,
             content: response.results["0"]?.Content,
             publishedDate: response.results["0"]?.PublishedDate,
-            category: response.results["0"]["@path"]
+            category: response.results["0"]["@path"],
           };
           setNews(newsInfo);
         })();
@@ -89,46 +91,56 @@ const NewsDetailPage = (props) => {
           )}
 
           <div className="news-text-container">
-                <h3>{news.caption}</h3>
-                <p style={{fontWeight:"bold"}}><span>Author:</span> {news.author}</p>
-                <p class="news-text">
-                    {Parser(""+news?.content)}
-                </p>
+            <h3>{news.caption}</h3>
+            <p style={{ fontWeight: "bold" }}>
+              <span>Author:</span> {news.author}
+            </p>
+            <p class="news-text">{Parser("" + news?.content)}</p>
           </div>
-
-
         </div>
         <div className="details-info">
           <div className="authors-other-news">
             <h3>Other news from Author</h3>
           </div>
           <div className="other-news">
-          <FeaturesNews>
-            <div className="feature-news-authors">
-            <p className="feature-title"> Our pick of the best new tech 2022 </p>
-              <p>By John Stones</p>
-              <p>25-05-2023</p>
-            </div>
-          </FeaturesNews>
-          <FeaturesNews>
-            <div className="feature-news-authors">
-            <p className="feature-title"> Our pick of the best new tech 2022 </p>
-              <p>By John Stones</p>
-              <p>25-05-2023</p>
-            </div>
-          </FeaturesNews>
-          <FeaturesNews>
-            <div className="feature-news-authors">
-            <p className="feature-title"> Our pick of the best new tech 2022 </p>
-              <p>By John Stones</p>
-              <p>25-05-2023</p>
-            </div>
-          </FeaturesNews>
+            <FeaturesNews>
+              <div className="feature-news-authors">
+                <p className="feature-title">
+                  {" "}
+                  Our pick of the best new tech 2022{" "}
+                </p>
+                <p>By John Stones</p>
+                <p>25-05-2023</p>
+              </div>
+            </FeaturesNews>
+            <FeaturesNews>
+              <div className="feature-news-authors">
+                <p className="feature-title">
+                  {" "}
+                  Our pick of the best new tech 2022{" "}
+                </p>
+                <p>By John Stones</p>
+                <p>25-05-2023</p>
+              </div>
+            </FeaturesNews>
+            <FeaturesNews>
+              <div className="feature-news-authors">
+                <p className="feature-title">
+                  {" "}
+                  Our pick of the best new tech 2022{" "}
+                </p>
+                <p>By John Stones</p>
+                <p>25-05-2023</p>
+              </div>
+            </FeaturesNews>
           </div>
           {/* Advert Image starts here */}
-          <img className="adImage" src={AdImage}  alt="advertImage"/>
+          <img className="adImage" src={AdImage} alt="advertImage" />
         </div>
       </NewsDetails>
+      <Footer>
+        <FooterSection />
+      </Footer>
     </GlobalContainer>
   );
 };

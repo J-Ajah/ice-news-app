@@ -4,7 +4,7 @@ import { magnoliaHostUrl } from "./../public/config";
 
 const FooterSection = ({ title }) => {
   const [footerLogoImage, setFooterLogoImage] = useState("");
-
+  console.log("I have been called here")
   useEffect(() => {
     (async () => {
       const data = await fetch(

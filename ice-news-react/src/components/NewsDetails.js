@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavigationContainer from "./NavigationContainer";
 import { ClipLoader } from "react-spinners";
 import { GlobalContainer } from "./../styles/Global";
@@ -10,73 +10,87 @@ import Parser from "html-react-parser";
 import AdImage from "../assets/DetailsAdvert.jpg";
 import { Footer } from "./../styles/Footer";
 import FooterSection from "./FooterSection";
+import Header from "./Homepage/Header";
 
 const NewsDetailPage = (props) => {
   const [navBarComponent, setNavbarNavigationBar] = useState([]);
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [logos, setLogos] = useState([]);
   const location = useLocation();
-  //   console.log(location);
+  const componentMounted = useRef(true);
+
+  
 
   useEffect(() => {
-    if (navBarComponent.length === 0) {
-      (async () => {
-        const response = await fetch(
-          "http://localhost:8080/magnoliaAuthor/.rest/pages/Ice-news/header"
-        );
-        const navItems = await response.json();
-        console.log(navItems);
-        let navItemsValue = {
-          navigation1: navItems["00"].navigation1,
-          navigation2: navItems["00"].navigation2,
-          navigation3: navItems["00"].navigation3,
-          navigation4: navItems["00"].navigation4,
-          navigation5: navItems["00"].navigation5,
-          messengerIcon: navItems["00"].messengerIcon,
-          linkedInIcon: navItems["00"].linkedInIcon,
-          fbIcon: navItems["00"].fbIcon,
-        };
-        setNavbarNavigationBar(navItemsValue);
+        if (navBarComponent.length === 0) {
+          (async () => {
+            const response = await fetch(
+              "http://localhost:8080/magnoliaAuthor/.rest/pages/Ice-news/header"
+            );
+            const navItems = await response.json();
 
-        // Fetch current News
-        (async () => {
-          const currentNews = await fetch(
-            "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
-          );
-          const response = await currentNews.json();
-          console.log(response);
-          const newsInfo = {
-            img: response.results["0"]?.ImageLink[0]["@link"],
-            author: response.results["0"]?.Author,
-            caption: response.results["0"]?.Caption,
-            content: response.results["0"]?.Content,
-            publishedDate: response.results["0"]?.PublishedDate,
-            category: response.results["0"]["@path"],
-          };
-          setNews(newsInfo);
-        })();
+            let navItemsValue = {
+              navigation1: navItems["00"]?.navigation1,
+              navigation2: navItems["00"]?.navigation2,
+              navigation3: navItems["00"]?.navigation3,
+              navigation4: navItems["00"]?.navigation4,
+              navigation5: navItems["00"]?.navigation5,
+              messengerIcon: navItems["00"]?.messengerIcon,
+              linkedInIcon: navItems["00"]?.linkedInIcon,
+              fbIcon: navItems["00"]?.fbIcon,
+            //   title: navItems["@name"],
+            //   logo: navItems["0"]?.logo,
+            //   advert: navItems["0"]?.logo,
+            };
+            setNavbarNavigationBar(navItemsValue);
+    
+            // Set logos
+            setLogos(navItemsValue);
+        
+    
+            // Fetch current News
+            (async () => {
+              const currentNews = await fetch(
+                "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
+              );
+              const response = await currentNews.json();
+    
+              const newsInfo = {
+                img: response.results["0"]?.ImageLink[0]["@link"],
+                author: response.results["0"]?.Author,
+                caption: response.results["0"]?.Caption,
+                content: response.results["0"]?.Content,
+                publishedDate: response.results["0"]?.PublishedDate,
+                category: response.results["0"]["@path"],
+              };
+              setNews(newsInfo);
+            })();
+    
+            setLoading(false);
+          })();
+        }
 
-        setLoading(false);
-      })();
-    }
+        return () => { 
+            componentMounted.current = false; 
+        }
   }, [navBarComponent]);
 
   return (
     <GlobalContainer>
+      {/* <Header logo={logos} title={navBarComponent.title} /> */}
       {loading ? (
         <ClipLoader size={50} color="#1B98E0" />
-      ) : (
-        <NavigationContainer
-          navigation1={navBarComponent?.navigation1}
-          navigation2={navBarComponent?.navigation2}
-          navigation3={navBarComponent?.navigation3}
-          navigation4={navBarComponent?.navigation4}
-          navigation5={navBarComponent?.navigation5}
-          fbIcon={navBarComponent?.fbIcon}
-          linkedInIcon={navBarComponent?.linkedInIcon}
-          messengerIcon={navBarComponent?.messengerIcon}
-        />
-      )}
+      ):<NavigationContainer
+      navigation1={navBarComponent?.navigation1}
+      navigation2={navBarComponent?.navigation2}
+      navigation3={navBarComponent?.navigation3}
+      navigation4={navBarComponent?.navigation4}
+      navigation5={navBarComponent?.navigation5}
+      fbIcon={navBarComponent?.fbIcon}
+      linkedInIcon={navBarComponent?.linkedInIcon}
+      messengerIcon={navBarComponent?.messengerIcon}
+    />}
 
       <NewsDetails>
         <div className="details-info">

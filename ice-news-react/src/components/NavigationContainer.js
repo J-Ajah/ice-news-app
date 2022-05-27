@@ -3,6 +3,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { InputBase } from "@mui/material";
 import { magnoliaHostUrl } from "../public/config";
 import searchIcon from "../assets/Vector.svg";
+import { useEffect, useState } from "react";
 
 const NavigationContainer = (props) => {
   const {
@@ -16,6 +17,7 @@ const NavigationContainer = (props) => {
     messengerIcon,
   } = props;
 
+      
   return (
     <div className="mainNavContainer">
       <div className="mini-container">

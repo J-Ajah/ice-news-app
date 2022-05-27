@@ -77,7 +77,7 @@ const Carousel = () => {
   );
 };
 
-const useIsMounted = ()=>{
+export const useIsMounted = ()=>{
     const isMounted = useRef(false);
 
     useEffect(()=>{

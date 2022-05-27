@@ -71,4 +71,15 @@ a{
     color: white;
 }
 
+
+
+// News Details globel styles starts here
+.details-headerContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top:10px;
+    align-items: center;
+}
+}
+
 `

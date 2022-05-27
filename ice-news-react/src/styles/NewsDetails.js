@@ -6,6 +6,8 @@ const NewsDetails = styled.div`
  display: grid;
  grid-template-columns: 1fr 460px;
 
+
+
  .details-info{
      display: flex;
      flex-direction: column;

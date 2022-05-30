@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { magnoliaHostUrl } from "../../public/config";
 import BusinessImage from ".././../assets/Business.jpg";
 
 const images = [
   {
     label: "San Jose – Oakland Bay Bridge, United States",
-    imgPath:
-    BusinessImage,
+    imgPath: BusinessImage,
   },
   {
     label: "San Francisco – Oakland Bay Bridge, United States",
@@ -31,62 +31,79 @@ const images = [
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [news, setNews] = useState([]);
   let count = useRef(0);
   const isMounted = useIsMounted(false);
 
-
   useEffect(() => {
-    setInterval(() => { 
+    (async () => {
+      const news = await fetch(
+        "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
+      );
+      const response = await news.json();
+      console.log(response.results[2].ImageLink[0]["@link"]);
 
-        if(isMounted.current){
-            let imagesLength = parseInt(images.length) - 1;
-      
-            if (count.current === imagesLength - 1) {
-              setCarouselIndex((prev) => {
-                count.current = 0;
-                return 0;
-              });
-            } else {
-              setCarouselIndex((prev) => {
-                count.current = prev;
-                return prev + 1;
-              });
-            }
+      setNews(response.results);
+    })();
+
+    setInterval(() => {
+      if (isMounted.current) {
+        let imagesLength = parseInt(images.length) - 1;
+
+        if (count.current === imagesLength - 1) {
+          setCarouselIndex((prev) => {
+            count.current = 0;
+            return 0;
+          });
+        } else {
+          setCarouselIndex((prev) => {
+            count.current = prev;
+            return prev + 1;
+          });
         }
+      }
     }, 5000);
-    
-
   }, []);
 
+  const reverseDate = (actualString) => {
+    let publishDate = actualString.slice(0, 10);
+    let reverseString = publishDate.split("-").reverse();
+    return reverseString.join("-");
+  };
+
   return (
-    <div className="carousel">
-      <div className="carousel-Item">
-        <img src={`${images[carouselIndex].imgPath}`} alt="main news" />
-        <div className="news-header-container">
-          <div className="news-Category">
-            <p>Business</p>
-          </div>
-          <h3 className="news-item-text">{`${images[carouselIndex].label}`}</h3>
-          <div className="news-authors">
-            <p>By John Stones</p>
-            <p>25-05-2023</p>
+    news.length > 0 && (
+      <div className="carousel">
+        <div className="carousel-Item">
+          <img
+            src={`${magnoliaHostUrl}${news[carouselIndex].ImageLink[0]["@link"]}`}
+            alt="main news"
+          />
+          <div className="news-header-container">
+            <div className="news-Category">
+              <p>{news[carouselIndex]["@path"].split("/")[3]}</p>
+            </div>
+            <h3 className="news-item-text">{`${news[carouselIndex].Caption}`}</h3>
+            <div className="news-authors">
+              <p>{`${news[carouselIndex].Author}`}</p>
+              <p>{`${reverseDate(news[carouselIndex].PublishedDate)}`}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
-export const useIsMounted = ()=>{
-    const isMounted = useRef(false);
+export const useIsMounted = () => {
+  const isMounted = useRef(false);
 
-    useEffect(()=>{
-        isMounted.current = true;
-        return ()=> isMounted.current = false;
-    })
+  useEffect(() => {
+    isMounted.current = true;
+    return () => (isMounted.current = false);
+  });
 
-    return isMounted
-}
-
+  return isMounted;
+};
 
 export default Carousel;

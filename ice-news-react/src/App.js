@@ -88,13 +88,16 @@ class App extends React.Component {
               path="/"
               element={this.state.page && config && this.renderComponent()}
             ></Route>
+            {/* React Query Route Route */}
             <Route path={"/:id"} element={<NewsDetailPage />}></Route>
+            {/*  Magnolia Query Route */}
             <Route
-              path={"/Ice-news"}
-              element={this.state.page && config && this.renderComponent()}
+              exact
+              path={"/Ice-news/:id"}
+              element={<NewsDetailPage />}
             ></Route>
             <Route
-              path={"/Ice-news/:id"}
+              path={"/Ice-news"}
               element={this.state.page && config && this.renderComponent()}
             ></Route>
           </Routes>

@@ -5,6 +5,7 @@ import "./App.css";
 import { config } from "./config";
 import { GlobalContainer } from "./styles/Global";
 import NewsDetailPage from "./components/NewsDetails";
+import NewsContext from "./context/newsContext";
 
 class App extends React.Component {
   _isMounted = false;
@@ -54,7 +55,16 @@ class App extends React.Component {
       );
     }
 
-    this.setState({ page, templateAnnotations });
+    // Fetch news 
+    const fetchNews = await fetch("http://localhost:8080/magnoliaAuthor/.rest/newscontainer");
+    const  news = await fetchNews.json();
+    const newsResult = news.results;
+
+    
+
+
+    // SETS APPS STATE
+    this.setState({ page, templateAnnotations, newsResult });
   }
 
   componentWillUnmount() {
@@ -75,32 +85,35 @@ class App extends React.Component {
   }
 
   render() {
+    const {newsResult} = this.state;
     return (
       <div className="App Container">
         <BrowserRouter>
-          <Routes>
-            <Route
-              path={"/NewsListPage"}
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            <Route
-              exact
-              path="/"
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-            {/* React Query Route Route */}
-            <Route path={"/:id"} element={<NewsDetailPage />}></Route>
-            {/*  Magnolia Query Route */}
-            <Route
-              exact
-              path={"/Ice-news/:id"}
-              element={<NewsDetailPage />}
-            ></Route>
-            <Route
-              path={"/Ice-news"}
-              element={this.state.page && config && this.renderComponent()}
-            ></Route>
-          </Routes>
+          <NewsContext.Provider value={{newsResult}}>
+            <Routes>
+              <Route
+                path={"/NewsListPage"}
+                element={this.state.page && config && this.renderComponent()}
+              ></Route>
+              <Route
+                exact
+                path="/"
+                element={this.state.page && config && this.renderComponent()}
+              ></Route>
+              {/* React Query Route Route */}
+              <Route path={"/:id"} element={<NewsDetailPage />}></Route>
+              {/*  Magnolia Query Route */}
+              <Route
+                exact
+                path={"/Ice-news/:id"}
+                element={<NewsDetailPage />}
+              ></Route>
+              <Route
+                path={"/Ice-news"}
+                element={this.state.page && config && this.renderComponent()}
+              ></Route>
+            </Routes>
+          </NewsContext.Provider>
         </BrowserRouter>
       </div>
     );

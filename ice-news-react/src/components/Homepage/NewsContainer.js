@@ -3,7 +3,7 @@ import { NewsContainer } from "../../styles/NewsContainer.styled";
 import Carousel from "./Carousel";
 import FeatureNews from "./FeatureNews";
 import Checkbox from "./Checkbox"
-
+import FeatureNewsImage from "./../../assets/Feature1.png"
 const NewsContainerDiv = () => {
 
     const newsFeature = [
@@ -22,7 +22,7 @@ const NewsContainerDiv = () => {
         </div>
         <div className="news-container-item">
           <h4>Features</h4>
-          <FeatureNews>
+          <FeatureNews image={FeatureNewsImage}>
             <div className="feature-news-authors">
              <p className="feature-title"> Our pick of the best new tech 2022 </p>
               <p>By John Stones</p>

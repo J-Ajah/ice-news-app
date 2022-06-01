@@ -32,10 +32,16 @@ const NewsDetails = styled.div`
      }
 
      .news-text{
-         height: 30px;
          font-size: 18px;
          text-align: justify;
          box-sizing: border-box;
+         a{
+             color: rgb(0, 0, 238);
+         }
+
+         a:visited{
+             color: rgba(50,50,191,1);
+         }
      }
  }
 
@@ -59,7 +65,10 @@ const NewsDetails = styled.div`
         position: relative;
          width: 100%;
          margin-bottom:10px;
+         background-image: linear-gradient(to bottom, transparent 50%, #191919 100%);
          img{
+             position: relative;
+             z-index: -1;
              border-radius: 10px;            
              width: 100%;ty
              box-sizing: border-box;

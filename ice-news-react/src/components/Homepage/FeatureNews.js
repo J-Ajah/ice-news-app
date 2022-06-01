@@ -1,11 +1,12 @@
 import React from "react";
-import FeatureNewsImage from "./../../assets/Feature1.png"
+import { magnoliaHostUrl } from "../../public/config";
 
-const FeaturesNews = ({children}) => {
+
+const FeaturesNews = ({children,image}) => {
 
   return (
     <div className="feature-News">
-      <img src={FeatureNewsImage} alt="Feature1" />
+      <img src={`${magnoliaHostUrl}${image}`} alt="Feature1" />
        {children}
     </div>
   );

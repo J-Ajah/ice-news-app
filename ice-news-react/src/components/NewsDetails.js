@@ -13,18 +13,34 @@ import FooterSection from "./FooterSection";
 import { NavigationLogoContainer } from "./../styles/Navbar.styled";
 import LogoImage from "./Homepage/LogoImage";
 import AdvertImage from "./Homepage/AdvertImage";
+import { reverseDate } from "./Homepage/NewsCatListing";
 
 const NewsDetailPage = (props) => {
-  const [navBarComponent, setNavbarNavigationBar] = useState([]);
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const [navBarComponent, setNavbarNavigationBar] = useState([]);
+  const [news, setNews] = useState(location.state);
+  const [loading, setLoading] = useState(true);
+  const [featureNews, setFeatureNews] = useState([]);
+  const [showOtherNews, setShowOtherNews] = useState(false);
   const componentMounted = useRef(true);
 
- 
+  // Fetch Feature News
+  const fetchFeatureNews = async () => {
+    const featureNews = await fetch(
+      `http://localhost:8080/magnoliaAuthor/.rest/newscontainer/?q=${news.author}`
+    );
+    const response = await featureNews.json();
+    
+    setFeatureNews(response.results);
+    // SETS THE STATE TO SHOW OTHER NEWS FROM AUTHOR IF LENGTH IS GREATER THAN 1
+    if(response.results.length > 1){
+      setShowOtherNews(true)
+    }
+    console.log(response)
+  };
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     if (navBarComponent.length === 0) {
       (async () => {
         const response = await fetch(
@@ -46,24 +62,7 @@ const NewsDetailPage = (props) => {
         };
         setNavbarNavigationBar(navItemsValue);
 
-        // Fetch current News
-        (async () => {
-          const currentNews = await fetch(
-            "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
-          );
-          const response = await currentNews.json();
-
-          const newsInfo = {
-            img: response.results["0"]?.ImageLink[0]["@link"],
-            author: response.results["0"]?.Author,
-            caption: response.results["0"]?.Caption,
-            content: response.results["0"]?.Content,
-            publishedDate: response.results["0"]?.PublishedDate,
-            category: response.results["0"]["@path"],
-          };
-          setNews(newsInfo);
-        })();
-
+        fetchFeatureNews();
         setLoading(false);
       })();
     }
@@ -73,10 +72,10 @@ const NewsDetailPage = (props) => {
     };
   }, [navBarComponent]);
 
-//   console.log(
-//     "Logo content has been logged: ",
-//     navBarComponent.logo["00"].advertImage
-//   );
+  //   console.log(
+  //     "Logo content has been logged: ",
+  //     navBarComponent.logo["00"].advertImage
+  //   );
   return (
     <GlobalContainer>
       {Object.keys(navBarComponent).length > 0 && (
@@ -107,54 +106,50 @@ const NewsDetailPage = (props) => {
           ) : (
             <img
               className="news-image"
-              src={`${magnoliaHostUrl}` + news.img}
+              src={`${magnoliaHostUrl}` + news.image}
               alt="NewsImage"
             />
           )}
 
           <div className="news-text-container">
-            <h3>{news.caption}</h3>
+            <h3>{news.newsTitle}</h3>
             <p style={{ fontWeight: "bold" }}>
               <span>Author:</span> {news.author}
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              <span>Published Date:</span> {news.newsDate}
             </p>
             <p className="news-text">{Parser("" + news?.content)}</p>
           </div>
         </div>
         <div className="details-info">
           <div className="authors-other-news">
-            <h3>Other news from Author</h3>
+            <h3> {showOtherNews && "Other news from Author"}</h3>
           </div>
+
           <div className="other-news">
-            <FeaturesNews>
-              <div className="feature-news-authors">
-                <p className="feature-title">
-                  {" "}
-                  Our pick of the best new tech 2022{" "}
-                </p>
-                <p>By John Stones</p>
-                <p>25-05-2023</p>
-              </div>
-            </FeaturesNews>
-            <FeaturesNews>
-              <div className="feature-news-authors">
-                <p className="feature-title">
-                  {" "}
-                  Our pick of the best new tech 2022{" "}
-                </p>
-                <p>By John Stones</p>
-                <p>25-05-2023</p>
-              </div>
-            </FeaturesNews>
-            <FeaturesNews>
-              <div className="feature-news-authors">
-                <p className="feature-title">
-                  {" "}
-                  Our pick of the best new tech 2022{" "}
-                </p>
-                <p>By John Stones</p>
-                <p>25-05-2023</p>
-              </div>
-            </FeaturesNews>
+            {
+              featureNews.length > 0 && (
+                 featureNews.map((newsItem, index)=>{
+                    if(newsItem.Caption === news.newsTitle){
+                      return ""
+                    }
+                      return(
+                        <FeaturesNews image={newsItem.ImageLink["0"]["@link"]}>
+                        <div className="feature-news-authors">
+                          <p className="feature-title">
+                            {" "}
+                            {newsItem.Caption}{" "}
+                          </p>
+                          <p>{newsItem.Author}</p>
+                          <p>{reverseDate(newsItem.PublishedDate)}</p>
+                        </div>
+                      </FeaturesNews>
+                      )
+                 })
+              )
+            }
+           
           </div>
           {/* Advert Image starts here */}
           <img className="adImage" src={AdImage} alt="advertImage" />

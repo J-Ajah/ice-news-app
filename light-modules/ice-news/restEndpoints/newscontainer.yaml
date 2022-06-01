@@ -2,8 +2,6 @@ workspace: newscontainer
 limit: 100
 depth: 10
 
-
-
 systemProperties:
   - mgnl:createdBy
 
@@ -14,3 +12,7 @@ references:
       $type: assetReferenceResolver
       assetRenditions:
         - 320x240
+  - name: referenceWithRichText
+    propertyName: Content
+    referenceResolver:
+      $type: richTextLinkReferenceResolver

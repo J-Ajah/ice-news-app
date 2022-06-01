@@ -10,7 +10,17 @@ import NewsContext from "./context/newsContext";
 class App extends React.Component {
   _isMounted = false;
 
-  state = {};
+  state = {
+    selectedCategories: {
+      business: false,
+      fashion: false,
+      general: false,
+      technology: false,
+      sports: false,
+      health: false,
+      entertainment: false
+    },
+  };
 
   async componentDidMount() {
     this._isMounted = true;
@@ -55,16 +65,16 @@ class App extends React.Component {
       );
     }
 
-    // Fetch news 
-    const fetchNews = await fetch("http://localhost:8080/magnoliaAuthor/.rest/newscontainer");
-    const  news = await fetchNews.json();
+    // Fetch news
+    const fetchNews = await fetch(
+      "http://localhost:8080/magnoliaAuthor/.rest/newscontainer"
+    );
+    const news = await fetchNews.json();
     const newsResult = news.results;
 
-    
-
-
     // SETS APPS STATE
-    this.setState({ page, templateAnnotations, newsResult });
+    this.setState(
+      { page, templateAnnotations, newsResult, ...this.state });
   }
 
   componentWillUnmount() {
@@ -85,11 +95,36 @@ class App extends React.Component {
   }
 
   render() {
-    const {newsResult} = this.state;
+    const { newsResult, selectedCategories } = this.state;
+
+    const checkCategory = (e) => {
+      let currentCategory = e.target.value;
+      Object.entries(this.state.selectedCategories).forEach(([key, value]) => {
+        console.log(key === currentCategory);
+        if (key === currentCategory) {
+
+          this.setState(
+            {
+              ...this.state,
+              selectedCategories: {
+                ...this.state.selectedCategories,
+                [key]: !value,
+              },
+            },
+            () => {
+              console.log("The changed state value is: ", this.state);
+            }
+          );
+        }
+      });
+    };
+
     return (
       <div className="App Container">
         <BrowserRouter>
-          <NewsContext.Provider value={{newsResult}}>
+          <NewsContext.Provider
+            value={{ newsResult, selectedCategories, checkCategory }}
+          >
             <Routes>
               <Route
                 path={"/NewsListPage"}

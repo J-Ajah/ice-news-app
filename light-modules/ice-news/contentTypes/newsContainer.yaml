@@ -17,6 +17,10 @@ model:
     Author:
       label: Author
       required: true
+    FeaturedNews:
+      type: Boolean
+      label: Feature News
+      defaultValue: false
     PublishedDate:
       type: Date
       label: PublishedDate
@@ -26,5 +30,3 @@ model:
       label: Image
       multiple: true
       required: true
-
-  

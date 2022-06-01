@@ -73,15 +73,13 @@ export const NewsContainer = styled.div`
         position: relative;
         width: 100%;
         margin: 10px;
+        background-image: linear-gradient(to bottom,transparent 50%,#191919 100%);
         img {
+          position: relative;
           border-radius: 10px;
           width: 100%;
           box-sizing: border-box;
-          background: linear-gradient(
-            270deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(17, 17, 16, 0.5217437316723564) 100%
-          );
+          z-index: -1;
         }
 
         .feature-news-authors {

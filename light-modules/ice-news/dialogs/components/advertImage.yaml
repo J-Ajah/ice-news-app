@@ -6,3 +6,4 @@ form:
     advertImage:
       label: Image
       $type: damLinkField
+
